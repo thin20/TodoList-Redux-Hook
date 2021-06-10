@@ -24,10 +24,18 @@ const tasks = createSlice({
             let id = action.payload;
             state = state.filter(task => task.id !== id);
             return state;
+        },
+        updateStatusTask: (state, action) => {
+            console.log(action.payload);
+            let id = action.payload;
+
+            let index = state.findIndex(task => task.id === id);
+
+            state[index] = { ...state[index], status: !state[index].status };
         }
     },
 })
 
 const { reducer, actions } = tasks;
-export const { listAll, addTask, updateTask, removeTask } = actions;
+export const { listAll, addTask, updateTask, removeTask, updateStatusTask } = actions;
 export default reducer;
