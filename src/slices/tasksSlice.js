@@ -2,26 +2,32 @@ const { createSlice } = require("@reduxjs/toolkit");
 
 const tasks = createSlice({
     name: 'tasks',
-    initialState: [],
+    initialState: [
+        { id: 1, name: 'An sang', status: true },
+        { id: 2, name: 'Hoc', status: false },
+        { id: 3, name: 'An trua', status: true },
+        { id: 4, name: 'An toi', status: false }
+    ],
     reducers: {
         listAll: (state, action) => {
             return state;
         },
-        addWork: (state, action) => {
+        addTask: (state, action) => {
             state.push(action.payload);
         },
-        updateWork: (state, action) => {
+        updateTask: (state, action) => {
             let id = action.payload.id;
-            let index = state.findIndex(work => work.id === id);
+            let index = state.findIndex(task => task.id === id);
             state[index] = { ...action.payload };
         },
-        removeWork: (state, action) => {
+        removeTask: (state, action) => {
             let id = action.payload;
-            state = state.filter(work => work.id !== id);
+            state = state.filter(task => task.id !== id);
             return state;
         }
     },
 })
 
-const { reducer, action } = tasks;
+const { reducer, actions } = tasks;
+export const { listAll, addTask, updateTask, removeTask } = actions;
 export default reducer;
