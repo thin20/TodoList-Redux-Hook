@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { removeTask, updateStatusTask } from '../../slices/tasksSlice';
 import { useDispatch } from 'react-redux';
+import { taskEdit } from '../../slices/itemEditSlice';
+import { openForm } from '../../slices/isDisplayFormSlice'
 
 TaskItem.propTypes = {
     task: PropTypes.object,
@@ -31,6 +33,14 @@ function TaskItem(props) {
         dispatch(action);
     }
 
+    const handleOpenFormUpdate = () => {
+        let action;
+        action = taskEdit(task);
+        dispatch(action);
+        action = openForm();
+        dispatch(action);
+    }
+
     return (
         <tr>
             <td>{index + 1}</td>
@@ -45,7 +55,7 @@ function TaskItem(props) {
                 </span>
             </td>
             <td className="text-center">
-                <button type="button" className="btn btn-warning">
+                <button type="button" className="btn btn-warning" onClick={handleOpenFormUpdate}>
                     <i className="fas fa-tools"></i>&nbsp;
                         <span>Sửa</span>
                 </button>&nbsp;

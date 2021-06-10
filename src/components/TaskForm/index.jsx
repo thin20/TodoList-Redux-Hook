@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { closeForm } from '../../slices/isDisplayFormSlice';
+import { addTask, updateTask } from '../../slices/tasksSlice';
+var uniqid = require('uniqid');
+
+function createId() {
+    return uniqid();
+}
 
 TaskForm.propTypes = {
 
@@ -7,11 +14,18 @@ TaskForm.propTypes = {
 
 function TaskForm(props) {
     const [taskEdit, setTaskEdit] = useState({ id: null, name: '', status: true });
+    const dispatch = useDispatch();
+    const task = useSelector(state => state.itemEdit);
 
-    // useEffect(() => {
-    //     const task = useSelector(state => state.itemEdit);
-    //     setTaskEdit(task);
-    // }, taskEdit)
+    useEffect(() => {
+        console.log(task);
+        setTaskEdit(task);
+    }, [task]);
+
+    const handleCloseForm = () => {
+        const action = closeForm();
+        dispatch(action);
+    }
 
     const onChangeName = (event) => {
         const name = event.target.value;
@@ -25,7 +39,18 @@ function TaskForm(props) {
 
     const onSubmitForm = (event) => {
         event.preventDefault();
-        console.log(taskEdit);
+        let action;
+
+        if (!taskEdit.id) {
+            const id = createId();
+            action = addTask({ ...taskEdit, id: id });
+        } else {
+            action = updateTask(taskEdit);
+        }
+        dispatch(action);
+        setTaskEdit({ id: null, name: '', status: true });
+        action = closeForm();
+        dispatch(action);
     }
 
     return (
@@ -33,7 +58,7 @@ function TaskForm(props) {
             <div className="card">
                 <div className="card-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <span>{!taskEdit.id ? 'Thêm Công việc' : 'Xửa Công Việc'}</span>
-                    <i className="fas fa-times-circle btn-toggle-form" style={{ cursor: 'pointer' }}></i>
+                    <i className="fas fa-times-circle btn-toggle-form" style={{ cursor: 'pointer' }} onClick={handleCloseForm}></i>
                 </div>
                 <div className="card-body">
                     <form>

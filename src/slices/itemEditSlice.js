@@ -8,12 +8,13 @@ const itemEdit = createSlice({
         status: true
     },
     reducers: {
-        editTaskItem: (state, action) => {
+        taskEdit: (state, action) => {
             state = { ...action.payload };
+            return state;
         }
     }
 });
 
 const { reducer, actions } = itemEdit;
-export const { editTaskItem } = actions;
+export const { taskEdit } = actions;
 export default reducer;

@@ -6,12 +6,15 @@ const isDisplayForm = createSlice({
     reducers: {
         toggleForm: (state, action) => {
             state = !state;
+            return state;
         },
         openForm: (state, action) => {
             state = true;
+            return state;
         },
         closeForm: (state, action) => {
             state = false;
+            return state;
         }
     }
 });
