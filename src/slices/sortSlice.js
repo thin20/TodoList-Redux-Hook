@@ -8,6 +8,7 @@ const sort = createSlice({
     },
     reducers: {
         sortTasks: (state, action) => {
+            console.log(action.payload);
             state = { ...action.payload };
         }
     }

@@ -5,11 +5,13 @@ const search = createSlice({
     initialState: '',
     reducers: {
         searchTasks: (state, action) => {
+            console.log(action.payload);
             state = action.payload;
+            return state;
         }
     }
 });
 
 const { reducer, actions } = search;
-export const { searchTask } = actions;
+export const { searchTasks } = actions;
 export default reducer;
