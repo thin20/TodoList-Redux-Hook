@@ -25,10 +25,10 @@ function App() {
                     <h1>Quản Lý Công Việc</h1>
                 </div>
                 <div className="row">
-                    <div className={isOpenForm ? "col-xs-4 col-sm-4 col-md-4 col-lg-4" : ""}>
+                    <div className={isOpenForm ? "col-xs-12 col-sm-12 col-md-4 col-lg-4" : ""}>
                         {isOpenForm ? <TaskForm /> : ''}
                     </div>
-                    <div className={isOpenForm ? "col-xs-8 col-sm-8 col-md-8 col-lg-8" : ""}>
+                    <div className={isOpenForm ? "col-xs-12 col-sm-12 col-md-8 col-lg-8" : ""}>
                         <button
                             type="button"
                             className="btn btn-primary"
