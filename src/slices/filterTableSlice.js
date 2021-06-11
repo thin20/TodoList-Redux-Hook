@@ -8,7 +8,9 @@ const filterTable = createSlice({
     },
     reducers: {
         filterTableWorks: (state, action) => {
+            console.log(action.payload);
             state = { ...action.payload };
+            return state;
         }
     }
 });

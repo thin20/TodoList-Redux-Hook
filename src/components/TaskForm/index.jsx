@@ -73,7 +73,13 @@ function TaskForm(props) {
                                 <option value="2">Ẩn</option>
                             </select>
                         </div>
-                        <button type="submit" className="btn btn-primary btn-save" onClick={(e) => onSubmitForm(e)}><i className="fas fa-plus"></i> <span> Lưu lại</span></button>&nbsp;
+                        <button
+                            type="submit"
+                            className={!taskEdit.id ? "btn btn-primary btn-save" : "btn btn-success btn-save"}
+                            onClick={(e) => onSubmitForm(e)}
+                        >
+                            <i className={!taskEdit.id ? "fas fa-plus" : "fas fa-save"}></i> <span>{!taskEdit.id ? "Thêm mới" : "Lưu lại"}</span>
+                        </button>&nbsp;
                         {/* <button type="submit" className="btn btn-danger btn-cancel"><i className="fas fa-times"></i> <span> Hủy bỏ</span></button> */}
                     </form>
                 </div>

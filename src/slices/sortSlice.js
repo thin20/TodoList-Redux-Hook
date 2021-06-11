@@ -10,6 +10,7 @@ const sort = createSlice({
         sortTasks: (state, action) => {
             console.log(action.payload);
             state = { ...action.payload };
+            return state;
         }
     }
 });
